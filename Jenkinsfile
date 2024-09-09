@@ -6,7 +6,6 @@ pipeline {
         DOCKER_TAG = 'latest'
     }
     stages {
-
         stage('Build Docker Image') {
             steps {
                 script {
@@ -18,8 +17,8 @@ pipeline {
         stage('Push Docker Image') {
             steps {
                 script {
-                    // Login to Docker Hub
-                    docker.withRegistry('https://index.docker.io/v1/', "${kanakchandel}") {
+                    // Login to Docker Hub using the credentials ID
+                    docker.withRegistry('https://index.docker.io/v1/', "${DOCKER_CREDENTIALS_ID}") {
                         // Push the Docker image
                         docker.image("${DOCKER_IMAGE_NAME}:${DOCKER_TAG}").push("${DOCKER_TAG}")
                     }
