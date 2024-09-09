@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        DOCKER_CREDENTIALS_ID = 'dockerknk' // ID for your Docker Hub credentials
+        DOCKER_CREDENTIALS_ID = 'kanakchandel' // ID for your Docker Hub credentials
         DOCKER_IMAGE_NAME = 'kanakchandel/knkimage'
         DOCKER_TAG = 'latest'
     }
@@ -19,7 +19,7 @@ pipeline {
             steps {
                 script {
                     // Login to Docker Hub
-                    docker.withRegistry('https://index.docker.io/v1/', "${dockerknk}") {
+                    docker.withRegistry('https://index.docker.io/v1/', "${kanakchandel}") {
                         // Push the Docker image
                         docker.image("${DOCKER_IMAGE_NAME}:${DOCKER_TAG}").push("${DOCKER_TAG}")
                     }
